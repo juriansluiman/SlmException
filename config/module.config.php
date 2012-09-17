@@ -1,12 +1,61 @@
 <?php
+/**
+ * Copyright (c) 2012 Jurian Sluiman.
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ *   * Redistributions of source code must retain the above copyright
+ *     notice, this list of conditions and the following disclaimer.
+ *
+ *   * Redistributions in binary form must reproduce the above copyright
+ *     notice, this list of conditions and the following disclaimer in
+ *     the documentation and/or other materials provided with the
+ *     distribution.
+ *
+ *   * Neither the names of the copyright holders nor the names of the
+ *     contributors may be used to endorse or promote products derived
+ *     from this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+ * LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+ * FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+ * COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+ * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+ * BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+ * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+ * ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
+ *
+ * @package     SlmException
+ * @author      Jurian Sluiman <jurian@juriansluiman.nl>
+ * @copyright   2012 Jurian Sluiman http://juriansluiman.nl.
+ * @license     http://www.opensource.org/licenses/bsd-license.php  BSD License
+ */
+
 return array(
-    'error' => array(
-        'exceptions' => array(
-            'BadRequest'       => 400,
-            'Unauthorized'     => 401,
-            'Forbidden'        => 403,
-            'PageNotFound'     => 404,
-            'MethodNotAllowed' => 405,
+    'slm_exception' => array(
+        'enable_markers'  => false,
+        'enable_logging'  => false,
+        'enable_messages' => false,
+
+        'default_exception_marker' => 'SlmException\Exception\ServerErrorInterface'
+
+        'exception_markers' => array(
+            // 4xx errors
+            'SlmException\Exception\BadRequestInterface'       => 400,
+            'SlmException\Exception\UnauthorizedInterface'     => 401,
+            'SlmException\Exception\ForbiddenInterface'        => 403,
+            'SlmException\Exception\PageNotFoundInterface'     => 404,
+            'SlmException\Exception\MethodNotAllowedInterface' => 405,
+
+            // 5xx errrors
+            'SlmException\Exception\ServerErrorInterface'      => 500,
         ),
     ),
 

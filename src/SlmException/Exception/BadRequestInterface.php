@@ -38,17 +38,7 @@
  * @license     http://www.opensource.org/licenses/bsd-license.php  BSD License
  */
 
-use Error\Listener;
+namespace SlmException\Exception;
 
-return array(
-    'factories' => array(
-        'ErrorExceptionListener' => function ($sm) {
-        	$config   = $sm->get('config');
-        	$config  = $config['error'];
-            $listener = new Listener\ErrorException;
-            $listener->setExceptionErrors($config['exceptions']);
-
-            return $listener;
-        },
-    ),
-);
+interface BadRequestInterface extends ExceptionInterface
+{}

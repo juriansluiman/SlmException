@@ -1,0 +1,30 @@
+{
+    "name": "slm/exception",
+    "description": "Extensive exception handling for Zend Framework 2",
+    "type": "library",
+    "keywords": [
+        "zf2",
+        "error",
+        "exception"
+    ],
+    "homepage": "https://github.com/juriansluiman/SlmException",
+    "authors": [
+        {
+            "name": "Jurian Sluiman",
+            "email": "jurian@soflomo.com",
+            "homepage": "http://juriansluiman.nl"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3.",
+        "zendframework/zendframework": "dev-master"
+    },
+    "autoload": {
+        "psr-0": {
+            "SlmException": "src/"
+        },
+        "classmap": [
+            "./Module.php"
+        ]
+    }
+}
