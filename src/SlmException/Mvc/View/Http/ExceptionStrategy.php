@@ -38,9 +38,9 @@
  * @license     http://www.opensource.org/licenses/bsd-license.php  BSD License
  */
 
-namespace Error\Listener;
+namespace SlmException\Mvc\View\Http;
 
-use Zend\Mvc\View\ExceptionStrategy;
+use Zend\Mvc\View\Http\ExceptionStrategy;
 use Zend\Mvc\MvcEvent;
 use Zend\Stdlib\ResponseInterface as Response;
 use Zend\Mvc\Application;
@@ -50,16 +50,19 @@ use Zend\Http\Response as HttpResponse;
 
 use Error\Exception;
 
-/**
- * Description of ErrorException
- */
 class ErrorException extends ExceptionStrategy
 {
-    protected $exceptions;
+    protected $defaultMarker;
+    protected $exceptionMarkers;
 
-    public function setExceptionErrors(array $exceptions)
+    public function setDefaultMarker($marker)
     {
-        $this->exceptions = $exceptions;
+        $this->defaultMarker = $marker;
+    }
+
+    public function setExceptionMarkers(array $markers)
+    {
+        $this->exceptionMarkers = $markers;
     }
 
     public function __invoke(MvcEvent $e)
