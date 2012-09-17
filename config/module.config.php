@@ -44,8 +44,7 @@ return array(
         'enable_logging'  => false,
         'enable_messages' => false,
 
-        'default_exception_marker' => 'SlmException\Exception\ServerErrorInterface'
-
+        'default_marker'    => 'SlmException\Exception\ServerErrorInterface'
         'exception_markers' => array(
             // 4xx errors
             'SlmException\Exception\BadRequestInterface'       => 400,
@@ -72,7 +71,7 @@ return array(
             'error/method-not-allowed' => __DIR__ . '/../view/error/method-not-allowed.phtml',
 
             // 5xx errrors
-            'error/server-error' => __DIR__ . '/../view/error/server-error.phtml',
+            'error/server-error'       => __DIR__ . '/../view/error/server-error.phtml',
         ),
     ),
 );

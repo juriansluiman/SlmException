@@ -38,15 +38,17 @@
  * @license     http://www.opensource.org/licenses/bsd-license.php  BSD License
  */
 
-use Error\Listener;
+use SlmException\Mvc\View\Http\ExceptionStrategy;
 
 return array(
     'factories' => array(
-        'ErrorExceptionListener' => function ($sm) {
+        'SlmException\Mvc\View\Http\ExceptionStrategy' => function ($sm) {
         	$config   = $sm->get('config');
-        	$config  = $config['error'];
-            $listener = new Listener\ErrorException;
-            $listener->setExceptionErrors($config['exceptions']);
+        	$config   = $config['slm_exception'];
+
+            $listener = new ExceptionStrategy;
+            $listener->setDefaultMarker($config['default_marker']);
+            $listener->setExceptionMarkers($config['exception_markers']);
 
             return $listener;
         },

@@ -76,6 +76,7 @@ class Module implements
     public function onBootstrap(EventInterface $e)
     {
         $app    = $e->getParam('application');
+        $sm     = $app->getServiceManager();
         $config = $sm->get('config');
         $config = $config['slm_exception'];
 
