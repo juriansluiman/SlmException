@@ -40,7 +40,7 @@
 
 namespace SlmException\Mvc\View\Http;
 
-use Zend\Mvc\View\Http\ExceptionStrategy;
+use Zend\Mvc\View\Http\ExceptionStrategy as BaseExceptionStrategy;
 use Zend\Mvc\MvcEvent;
 use Zend\Stdlib\ResponseInterface as Response;
 use Zend\Mvc\Application;
@@ -50,7 +50,7 @@ use Zend\Http\Response as HttpResponse;
 
 use Error\Exception;
 
-class ErrorException extends ExceptionStrategy
+class ExceptionStrategy extends BaseExceptionStrategy
 {
     protected $defaultMarker;
     protected $exceptionMarkers;

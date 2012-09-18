@@ -44,7 +44,7 @@ return array(
         'enable_logging'  => false,
         'enable_messages' => false,
 
-        'default_marker'    => 'SlmException\Exception\ServerErrorInterface'
+        'default_marker'    => 'SlmException\Exception\ServerErrorInterface',
         'exception_markers' => array(
             // 4xx errors
             'SlmException\Exception\BadRequestInterface'       => 400,
