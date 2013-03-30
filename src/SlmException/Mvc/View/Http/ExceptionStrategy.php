@@ -48,7 +48,7 @@ use Zend\View\Model\ViewModel;
 use Zend\Filter\Word\CamelCaseToDash as CamelCaseToDashFilter;
 use Zend\Http\Response as HttpResponse;
 
-use Error\Exception;
+use SlmException\Exception;
 
 class ExceptionStrategy extends BaseExceptionStrategy
 {
@@ -65,7 +65,7 @@ class ExceptionStrategy extends BaseExceptionStrategy
         $this->exceptionMarkers = $markers;
     }
 
-    public function __invoke(MvcEvent $e)
+    public function prepareExceptionViewModel(MvcEvent $e)
     {
         // Do nothing if no error in the event
         $error = $e->getError();
@@ -112,7 +112,7 @@ class ExceptionStrategy extends BaseExceptionStrategy
             $e->setResponse($response);
         }
 
-        $code = $this->exceptions[$name];
+        $code = $this->exceptionMarkers[$name];
         $response->setStatusCode($code);
 
         // Unset error to stop other exception listeners from triggering
@@ -129,16 +129,7 @@ class ExceptionStrategy extends BaseExceptionStrategy
     {
         $interfaces = class_implements($exception);
         foreach($interfaces as $name) {
-            /**
-             * Strip namespace part and Interface suffix
-             *
-             * Example: My\Foo\MyNameInterface gives "MyName"
-             */
-            $name = substr($name, strrpos($name, '\\') + 1);
-            $name = substr($name, 0, -1 * strlen('Interface'));
-
-            if (isset($this->exceptions[$name])) {
-                // We have a code for this name, so return this name
+            if (isset($this->exceptionMarkers[$name])) {
                 return $name;
             }
         }
@@ -150,10 +141,26 @@ class ExceptionStrategy extends BaseExceptionStrategy
      * @param  string $exceptionName Name of the Exception interface
      * @return string                Name of the template name
      */
-    protected function getTemplatename($exceptionName)
+    protected function getTemplatename($name)
     {
+        /**
+         * Strip namespace part and Interface suffix
+         *
+         * This code only assumes that when the string
+         * "Interface" is present, it is the suffix of
+         * the interface's class name. This is in most
+         * cases true, but custom interfaces might not
+         * rely on this naming convention.
+         *
+         * Example: Foo\Bar\BazInterface gives "Baz"
+         */
+        $name = substr($name, strrpos($name, '\\') + 1);
+        if (strpos($name, 'Interface') !== false) {
+            $name = substr($name, 0, -9);
+        }
+
         $filter   = new CamelCaseToDashFilter;
-        $name     = $filter->filter($exceptionName);
+        $name     = $filter->filter($name);
         $template = 'error/' . strtolower($name);
 
         return $template;
