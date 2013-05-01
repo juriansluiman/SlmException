@@ -98,16 +98,12 @@ class Module implements
         $em  = $app->getEventManager();
 
         // Remove the default error strategies to not interfere
-        if($sm->has('Zend\Mvc\View\Http\RouteNotFoundStrategy'))
-        {
+        if($app->getRequest() instanceof HttpRequest) {
             $strategy = $sm->get('Zend\Mvc\View\Http\RouteNotFoundStrategy');
-            $strategy->detach($em);
-        }
+        	$strategy->detach($em);
 
-        if($sm->has('Zend\Mvc\View\Http\ExceptionStrategy'))
-        {
-            $strategy = $sm->get('Zend\Mvc\View\Http\ExceptionStrategy');
-            $strategy->detach($em);
+        	$strategy = $sm->get('Zend\Mvc\View\Http\ExceptionStrategy');
+        	$strategy->detach($em);
         }
 
         // Attach the new strategy
