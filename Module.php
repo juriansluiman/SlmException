@@ -100,10 +100,10 @@ class Module implements
         // Remove the default error strategies to not interfere
         if($app->getRequest() instanceof HttpRequest) {
             $strategy = $sm->get('Zend\Mvc\View\Http\RouteNotFoundStrategy');
-        	$strategy->detach($em);
+            $strategy->detach($em);
 
-        	$strategy = $sm->get('Zend\Mvc\View\Http\ExceptionStrategy');
-        	$strategy->detach($em);
+            $strategy = $sm->get('Zend\Mvc\View\Http\ExceptionStrategy');
+            $strategy->detach($em);
         }
 
         // Attach the new strategy
