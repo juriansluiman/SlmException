@@ -87,6 +87,9 @@ class Module implements
         if (true === $config['enable_messages']) {
             $this->attachExceptionMessages($e);
         }
+        if (true === $config['enable_problem_api']) {
+            $this->attachProblemApiListeners($e);
+        }
     }
 
     protected function attachExceptionListeners(EventInterface $e)
@@ -118,5 +121,14 @@ class Module implements
     protected function attachExceptionMessages(EventInterface $e)
     {
         // @todo Implement user defined error messages
+    }
+
+    protected function attachProblemApiListeners(EventInterface $e)
+    {
+        $app = $e->getApplication();
+        $em  = $app->getEventManager();
+
+        $listener = new Mvc\JsonProblemApiListener;
+        $listener->attach($em);
     }
 }

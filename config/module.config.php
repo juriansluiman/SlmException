@@ -40,9 +40,10 @@
 
 return array(
     'slm_exception' => array(
-        'enable_markers'  => false,
-        'enable_logging'  => false,
-        'enable_messages' => false,
+        'enable_markers'     => false,
+        'enable_logging'     => false,
+        'enable_messages'    => false,
+        'enable_problem_api' => false,
 
         'default_marker'    => 'SlmException\Exception\ServerErrorInterface',
         'exception_markers' => array(
