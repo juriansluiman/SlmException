@@ -53,9 +53,6 @@ class Module implements
     public function getAutoloaderConfig()
     {
         return array(
-            'Zend\Loader\ClassMapAutoloader' => array(
-                __DIR__ . '/autoload_classmap.php',
-            ),
             'Zend\Loader\StandardAutoloader' => array(
                 'namespaces' => array(
                     __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
@@ -106,7 +103,7 @@ class Module implements
 
             $strategy = $sm->get('Zend\Mvc\View\Http\ExceptionStrategy');
             $strategy->detach($em);
-        
+
             // Attach the new strategy
             $strategy = $sm->get('SlmException\Mvc\View\Http\ExceptionStrategy');
             $strategy->attach($em);
