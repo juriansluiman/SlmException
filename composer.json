@@ -1,6 +1,7 @@
 {
     "name": "slm/exception",
     "description": "Extensive exception handling for Zend Framework 2",
+    "license": "BSD-3-Clause",
     "type": "library",
     "keywords": [
         "zf2",
@@ -17,7 +18,7 @@
     ],
     "require": {
         "php": ">=5.3.3.",
-        "zendframework/zendframework": "2.*"
+        "zendframework/zend-mvc": "~2.1"
     },
     "autoload": {
         "psr-0": {
